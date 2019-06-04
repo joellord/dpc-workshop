@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>From Zero to App</title>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="./js/react.js"></script>
+<script src="./js/react-dom.js"></script>
+
+<script type="text/javascript">
+
+let state = {
+  counter: 0
+};
+
+let Counter = React.createClass({
+  handleIncrement: function() {
+    setState({counter: state.counter + 1});
+  },
+  render: function() {
+    return (
+      React.createElement("div", {},
+        React.createElement("h1", {}, "The Counter"),
+        React.createElement("button", {onClick: this.handleIncrement}, "+"),
+        React.createElement("span", {}, state.counter),
+        React.createElement("button", {}, "-")
+      )
+    )
+  }
+});
+
+let setState = function(newState) {
+  state = Object.assign({}, state, newState);
+  ReactDOM.render(React.createElement(Counter, state), document.querySelector("#app"));
+};
+
+setState({counter: 1});
+
+</script>
+
+</body>
+</html>
